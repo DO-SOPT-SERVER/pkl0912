@@ -6,6 +6,8 @@ import com.example.second_seminar.dto.request.MemberProfileUpdateRequest;
 import com.example.second_seminar.dto.response.MemberGetResponse;
 import com.example.second_seminar.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +31,12 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getMemberByIdV2(memberId));
     }
 
+
+    //success 메시지 뜨게 하기
     @PostMapping
-    public ResponseEntity<Void> createMember(@RequestBody MemberCreateRequest request){
+    public ResponseEntity<String> createMember(@RequestBody MemberCreateRequest request){
         URI location = URI.create(memberService.create(request));
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body("success");
     }
 
     @GetMapping
