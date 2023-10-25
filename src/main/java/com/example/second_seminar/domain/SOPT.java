@@ -17,4 +17,9 @@ public class SOPT {
 
     @Enumerated(value = STRING)
     private Part part;
+
+    public void updateSopt(int generation, Part part) {
+        this.generation = generation;
+        this.part = part;
+    }
 }

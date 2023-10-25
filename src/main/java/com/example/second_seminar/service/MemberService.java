@@ -64,7 +64,8 @@ public class MemberService {
     @Transactional
     public void updateSOPT(Long memberId, MemberProfileUpdateRequest request) {
         Member member = memberJpaRepository.findByIdOrThrow(memberId);
-
+        member.getSopt().updateSopt(request.getGeneration(), request.getPart());
+        memberJpaRepository.save(member);
     }
 
     //삭제
